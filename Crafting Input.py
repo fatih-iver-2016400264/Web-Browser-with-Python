@@ -10,12 +10,6 @@
 # LexToken(RANGLE,'>',2,13)
 # LexToken(WORD,'webpage!',2,14)
 
-
-webpage = """This is
-   <b>webpage!"""
-
-
-
 import ply.lex as lex
 
 tokens = ('LANGLE', # <
@@ -58,14 +52,12 @@ def t_WORD(token):
     r'[^ <>\n]+'
     return token
 
+webpage = """This is
+   <b>webpage!"""
 
-
-htmllexer = lex.lex()
-htmllexer.input(webpage)
+lexer = lex.lex()
+lexer.input(webpage)
 while True:
-    tok = htmllexer.token()
-    if not tok: break
-    print (tok)
-
-
-
+    token = lexer.token()
+    if not token: break
+    print(token)
